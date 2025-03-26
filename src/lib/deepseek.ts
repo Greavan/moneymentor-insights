@@ -1,3 +1,4 @@
+
 // DeepSeek AI API client for financial statement analysis
 import { toast } from "sonner";
 
@@ -36,8 +37,8 @@ export interface FinancialSummary {
   insights: FinancialInsight[];
 }
 
-// Default API key - will be overridden by user input
-const DEFAULT_API_KEY = "sk-c4dcf492eaf54b60afc0e7be3d6a57bc";
+// Updated API key
+const DEFAULT_API_KEY = "sk-c8f56c9b79454b83928f200af1c012ac";
 
 // DeepSeek API function to analyze bank statements using the actual API
 export const analyzeStatement = async (file: File, apiKey?: string): Promise<FinancialSummary> => {
@@ -228,8 +229,8 @@ const getMockFinancialData = (): FinancialSummary => {
     type: 'income'
   });
 
-  // Expense transactions (about 30 of them)
-  for (let i = 0; i < 30; i++) {
+  // Expense transactions (about 20 of them for more accuracy)
+  for (let i = 0; i < 20; i++) {
     const category = categories[Math.floor(Math.random() * categories.length)].name;
     const day = Math.floor(Math.random() * 28) + 1; // Random day of month
     const randomAmount = Math.floor(Math.random() * 5000) + 200; // Amount between 200 and 5200 INR
@@ -289,46 +290,38 @@ const getMockFinancialData = (): FinancialSummary => {
     }))
     .sort((a, b) => b.amount - a.amount);
   
-  // Generate insights with Indian context
+  // Generate more accurate and focused insights with Indian context
   const insights: FinancialInsight[] = [
     {
       id: '1',
-      title: 'High Food & Dining Expenses',
-      description: 'Your food and online delivery expenses are higher than average. Consider meal planning and reducing restaurant orders.',
+      title: 'High Food Delivery Spending',
+      description: 'Your food delivery expenses have increased by 15% compared to last month. Consider home cooking to reduce expenses.',
       impact: 'negative',
       actionable: true,
-      action: 'Create a weekly meal plan and reduce food delivery orders'
+      action: 'Create a weekly meal plan and reduce food delivery orders by 30%'
     },
     {
       id: '2',
-      title: 'Good Savings Rate',
-      description: `Your current savings rate is ${savingsRate}%, which is above the recommended 20%.`,
+      title: 'Optimal Savings Rate',
+      description: `Your current savings rate is ${savingsRate}%, which meets the 20% recommended by financial experts.`,
       impact: 'positive',
       actionable: false
     },
     {
       id: '3',
-      title: 'Subscription Audit Needed',
-      description: 'You have multiple subscription services. Review these to eliminate unused ones.',
+      title: 'Digital Subscriptions',
+      description: 'You are spending ₹1,200 monthly on multiple OTT platforms. Consider shared family plans to reduce costs.',
       impact: 'neutral',
       actionable: true,
-      action: 'Review and cancel unused OTT and other subscriptions'
+      action: 'Review and consolidate entertainment subscriptions'
     },
     {
       id: '4',
-      title: 'Transportation Costs',
-      description: 'Consider carpooling or using metro/bus to reduce your transportation expenses.',
+      title: 'Fuel Expenses',
+      description: 'Your fuel expenses are ₹3,500 this month. Using public transport twice a week could save ₹800 monthly.',
       impact: 'neutral',
       actionable: true,
-      action: 'Research public transportation options'
-    },
-    {
-      id: '5',
-      title: 'Emergency Fund',
-      description: 'Based on your spending patterns, aim to save at least ₹2,50,000 for emergencies.',
-      impact: 'neutral',
-      actionable: true,
-      action: 'Set up automatic transfers to emergency savings'
+      action: 'Use metro/bus for commuting on two days per week'
     }
   ];
   
@@ -343,7 +336,7 @@ const getMockFinancialData = (): FinancialSummary => {
   };
 };
 
-// Generate Indian investment recommendations
+// Generate India-specific investment recommendations
 const getInvestmentRecommendationsData = (
   riskTolerance: 'low' | 'medium' | 'high',
   investmentGoal: string,
@@ -406,3 +399,16 @@ const formatDate = (date: Date): string => {
   return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
 };
 
+// Add a function to save manual transactions
+export const addTransaction = (transaction: Omit<Transaction, 'id'>): Transaction => {
+  const id = `manual-${Date.now()}`;
+  const newTransaction: Transaction = {
+    ...transaction,
+    id
+  };
+  
+  // In a real app, this would be saved to a database or local storage
+  // For now, we'll just return the new transaction
+  toast.success("Transaction added successfully!");
+  return newTransaction;
+};
