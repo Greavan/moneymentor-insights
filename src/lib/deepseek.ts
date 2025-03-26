@@ -1,4 +1,3 @@
-
 // DeepSeek AI API client for financial statement analysis
 import { toast } from "sonner";
 
@@ -244,7 +243,7 @@ const getMockFinancialData = (): FinancialSummary => {
       'Utilities': ['Electricity Bill', 'Water Bill', 'Jio Fiber', 'Airtel Recharge', 'Tata Power'],
       'Healthcare': ['Apollo Pharmacy', 'Medical Test', 'Doctor Consultation', 'Health Insurance', 'Gym Membership'],
       'Travel': ['MakeMyTrip', 'IRCTC Train Booking', 'Hotel Stay', 'Flight Tickets', 'Yatra.com'],
-      'Education': ['Course Fees', 'School Tuition', 'Byju's Subscription', 'Coursera Payment', 'Book Purchase'],
+      'Education': ['Course Fees', 'School Tuition', "Byju's Subscription", 'Coursera Payment', 'Book Purchase'],
       'Miscellaneous': ['Gift Purchase', 'Donation', 'Subscription Service', 'Home Supplies']
     };
     
@@ -406,3 +405,4 @@ const getInvestmentRecommendationsData = (
 const formatDate = (date: Date): string => {
   return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
 };
+
