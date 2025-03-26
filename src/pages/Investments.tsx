@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
@@ -52,7 +51,7 @@ const Investments: React.FC = () => {
                 onTransactionAdded={handleTransactionAdded}
                 categories={investmentCategories}
                 title="Add Investment"
-                description="Record your investment transactions"
+                formDescription="Record your investment transactions"
               />
               
               {manualTransactions.length > 0 && (

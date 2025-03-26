@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
@@ -48,7 +47,7 @@ const Loans: React.FC = () => {
                 onTransactionAdded={handleTransactionAdded}
                 categories={loanCategories}
                 title="Add Loan Payment"
-                description="Record your loan EMI payments"
+                formDescription="Record your loan EMI payments"
               />
               
               {manualTransactions.length > 0 && (

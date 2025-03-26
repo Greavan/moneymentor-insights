@@ -13,7 +13,7 @@ interface ManualTransactionFormProps {
   onTransactionAdded?: (transaction: any) => void;
   categories?: string[];
   title?: string;
-  description?: string;
+  formDescription?: string; // Renamed from 'description' to 'formDescription'
 }
 
 const ManualTransactionForm: React.FC<ManualTransactionFormProps> = ({ 
@@ -34,7 +34,7 @@ const ManualTransactionForm: React.FC<ManualTransactionFormProps> = ({
     'Investment'
   ],
   title = "Add Transaction Manually",
-  description = "Enter transaction details below"
+  formDescription = "Enter transaction details below" // Renamed from 'description' to 'formDescription'
 }) => {
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [description, setDescription] = useState('');
@@ -75,7 +75,7 @@ const ManualTransactionForm: React.FC<ManualTransactionFormProps> = ({
           <ListPlus className="w-5 h-5 text-primary" />
           <CardTitle className="text-lg">{title}</CardTitle>
         </div>
-        <CardDescription>{description}</CardDescription>
+        <CardDescription>{formDescription}</CardDescription> {/* Use formDescription here */}
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
