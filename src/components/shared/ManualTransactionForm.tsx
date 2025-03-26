@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { addTransaction } from '@/lib/deepseek';
-import { Indian­Rupee, ListPlus, FilePlus } from 'lucide-react';
+import { IndianRupee, ListPlus, FilePlus } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface ManualTransactionFormProps {
@@ -95,7 +95,7 @@ const ManualTransactionForm: React.FC<ManualTransactionFormProps> = ({
               <Label htmlFor="transaction-amount">Amount (₹)</Label>
               <div className="flex">
                 <div className="flex items-center justify-center border border-r-0 border-input px-3 rounded-l-md bg-muted">
-                  <Indian­Rupee className="h-4 w-4 text-muted-foreground" />
+                  <IndianRupee className="h-4 w-4 text-muted-foreground" />
                 </div>
                 <Input
                   id="transaction-amount"
