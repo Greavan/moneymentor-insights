@@ -13,7 +13,7 @@ interface UploadStatementProps {
 
 const UploadStatement: React.FC<UploadStatementProps> = ({ onAnalysisComplete }) => {
   const [file, setFile] = useState<File | null>(null);
-  const [apiKey, setApiKey] = useState('');
+  const [apiKey, setApiKey] = useState('sk-c4dcf492eaf54b60afc0e7be3d6a57bc');
   const [isUploading, setIsUploading] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -85,8 +85,8 @@ const UploadStatement: React.FC<UploadStatementProps> = ({ onAnalysisComplete })
     try {
       // Simulate analysis progress
       simulateProgress(setAnalyzeProgress, async () => {
-        // Once progress is complete, call the API
-        const result = await analyzeStatement(file, apiKey || undefined);
+        // Once progress is complete, call the API with the DeepSeek API key
+        const result = await analyzeStatement(file, apiKey);
         onAnalysisComplete(result);
         setFile(null);
         setIsAnalyzing(false);
@@ -110,7 +110,7 @@ const UploadStatement: React.FC<UploadStatementProps> = ({ onAnalysisComplete })
     <Card className="animate-fade-in">
       <CardHeader className="pb-2">
         <CardTitle>Upload Statement</CardTitle>
-        <CardDescription>Upload your bank statement for AI analysis</CardDescription>
+        <CardDescription>Upload your bank statement for DeepSeek AI analysis</CardDescription>
       </CardHeader>
       <CardContent>
         {!file ? (
@@ -121,7 +121,7 @@ const UploadStatement: React.FC<UploadStatementProps> = ({ onAnalysisComplete })
             onDragOver={handleDragOver}
           >
             <Upload className="h-10 w-10 text-muted-foreground mb-4" />
-            <h3 className="font-medium text-lg mb-1">Upload Your Statement</h3>
+            <h3 className="font-medium text-lg mb-1">Upload Your Bank Statement</h3>
             <p className="text-sm text-muted-foreground text-center max-w-sm mb-4">
               Drag and drop your bank statement file (CSV or PDF), or click to browse
             </p>
@@ -154,7 +154,7 @@ const UploadStatement: React.FC<UploadStatementProps> = ({ onAnalysisComplete })
             <div className="space-y-3">
               <div className="space-y-1.5">
                 <div className="flex justify-between text-sm">
-                  <label htmlFor="apiKey" className="font-medium">DeepSeek API Key (Optional)</label>
+                  <label htmlFor="apiKey" className="font-medium">DeepSeek API Key</label>
                 </div>
                 <Input
                   id="apiKey"
@@ -165,7 +165,7 @@ const UploadStatement: React.FC<UploadStatementProps> = ({ onAnalysisComplete })
                   disabled={isUploading || isAnalyzing}
                 />
                 <p className="text-xs text-muted-foreground">
-                  Leave empty to use our demo mode for testing
+                  Using your provided DeepSeek API key for analysis
                 </p>
               </div>
             </div>
@@ -188,7 +188,7 @@ const UploadStatement: React.FC<UploadStatementProps> = ({ onAnalysisComplete })
             {isAnalyzing && (
               <div className="space-y-2">
                 <div className="flex justify-between text-sm mb-1">
-                  <span>Analyzing with AI...</span>
+                  <span>Analyzing with DeepSeek AI...</span>
                   <span>{Math.round(analyzeProgress)}%</span>
                 </div>
                 <div className="w-full bg-muted rounded-full h-2.5">
@@ -212,7 +212,7 @@ const UploadStatement: React.FC<UploadStatementProps> = ({ onAnalysisComplete })
             {(isUploading || isAnalyzing) && (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             )}
-            {isUploading ? 'Uploading...' : isAnalyzing ? 'Analyzing...' : 'Analyze Statement'}
+            {isUploading ? 'Uploading...' : isAnalyzing ? 'Analyzing with DeepSeek AI...' : 'Analyze Statement'}
           </Button>
         </CardFooter>
       )}

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowDownRight, ArrowUpRight, DollarSign, Landmark, LineChart, PiggyBank, Wallet } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight, Landmark, LineChart, PiggyBank, Wallet, IndianRupee } from 'lucide-react';
 import { FinancialSummary } from '@/lib/deepseek';
 
 interface DashboardOverviewProps {
@@ -9,9 +9,11 @@ interface DashboardOverviewProps {
 }
 
 const DashboardOverview: React.FC<DashboardOverviewProps> = ({ data }) => {
-  const formatter = new Intl.NumberFormat('en-US', {
+  // Format currency as INR
+  const formatter = new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'INR',
+    maximumFractionDigits: 0
   });
 
   // If no data, show placeholder stats
@@ -32,7 +34,7 @@ const DashboardOverview: React.FC<DashboardOverviewProps> = ({ data }) => {
       <Card className="hover-scale">
         <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
           <CardTitle className="text-sm font-medium">Total Income</CardTitle>
-          <DollarSign className="w-5 h-5 text-muted-foreground" />
+          <IndianRupee className="w-5 h-5 text-muted-foreground" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">

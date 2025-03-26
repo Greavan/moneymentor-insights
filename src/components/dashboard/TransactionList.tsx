@@ -4,7 +4,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Transaction } from '@/lib/deepseek';
 import { ArrowDownLeft, ArrowUpRight, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface TransactionListProps {
@@ -16,9 +15,11 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactions }) => {
   const [filter, setFilter] = useState<'all' | 'income' | 'expense'>('all');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
 
-  const formatter = new Intl.NumberFormat('en-US', {
+  // Format currency as INR
+  const formatter = new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'INR',
+    maximumFractionDigits: 0
   });
 
   // If no transactions, show empty state

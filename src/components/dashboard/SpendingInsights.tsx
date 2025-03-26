@@ -22,9 +22,11 @@ const SpendingInsights: React.FC<SpendingInsightsProps> = ({ data }) => {
     }));
   }, [data]);
 
-  const formatter = new Intl.NumberFormat('en-US', {
+  // Format currency as INR
+  const formatter = new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'INR',
+    maximumFractionDigits: 0
   });
 
   const CustomTooltip = ({ active, payload }: any) => {
@@ -41,18 +43,18 @@ const SpendingInsights: React.FC<SpendingInsightsProps> = ({ data }) => {
   };
 
   const monthlyTrend = [
-    { name: 'Jan', amount: 3200 },
-    { name: 'Feb', amount: 3300 },
-    { name: 'Mar', amount: 3100 },
-    { name: 'Apr', amount: 3400 },
-    { name: 'May', amount: 3300 },
-    { name: 'Jun', amount: 3500 },
-    { name: 'Jul', amount: 3200 },
-    { name: 'Aug', amount: 3100 },
-    { name: 'Sep', amount: 3300 },
-    { name: 'Oct', amount: 3000 },
-    { name: 'Nov', amount: 3200 },
-    { name: 'Dec', amount: data?.totalExpenses || 3400 },
+    { name: 'Jan', amount: 40000 },
+    { name: 'Feb', amount: 45000 },
+    { name: 'Mar', amount: 42000 },
+    { name: 'Apr', amount: 48000 },
+    { name: 'May', amount: 44000 },
+    { name: 'Jun', amount: 47000 },
+    { name: 'Jul', amount: 43000 },
+    { name: 'Aug', amount: 41000 },
+    { name: 'Sep', amount: 46000 },
+    { name: 'Oct', amount: 40000 },
+    { name: 'Nov', amount: 43000 },
+    { name: 'Dec', amount: data?.totalExpenses || 45000 },
   ];
 
   return (
@@ -159,7 +161,7 @@ const SpendingInsights: React.FC<SpendingInsightsProps> = ({ data }) => {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                 <XAxis dataKey="name" />
                 <YAxis 
-                  tickFormatter={(value) => `$${value}`} 
+                  tickFormatter={(value) => `₹${(value/1000)}k`} 
                   width={80}
                 />
                 <Tooltip 
@@ -182,7 +184,7 @@ const SpendingInsights: React.FC<SpendingInsightsProps> = ({ data }) => {
         <Card className="col-span-1 md:col-span-2 lg:col-span-3 overflow-hidden">
           <CardHeader className="pb-2">
             <CardTitle>Financial Insights</CardTitle>
-            <CardDescription>AI-generated suggestions to improve your finances</CardDescription>
+            <CardDescription>DeepSeek AI-generated suggestions to improve your finances</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
